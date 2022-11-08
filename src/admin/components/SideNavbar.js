@@ -1,5 +1,5 @@
 import React from "react";
-import {ShopIcon,SettingsIcon,PropertiesIcon,PersonIcon,AnnotationIcon} from "evergreen-ui"
+import {ShopIcon,PropertiesIcon} from "evergreen-ui"
 
 
 
@@ -26,34 +26,14 @@ function SideNavbar() {
               <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
                 <ShopIcon className="text-2xl text-gray-600 group-hover:text-white " />
                 <h3 className="text-base text-slate-50 group-hover:text-white font-semibold ">
-                  <a href="/White">
+                  <a href="/Shop">
                   Shop
                   </a>
                 </h3>
               </div>
-              <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <PersonIcon className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-slate-50 group-hover:text-white font-semibold ">
-                  <a href="/Yellow">
-                  Employee
-                  </a>
-                </h3>
-              </div>
-              <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <AnnotationIcon className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-slate-50 group-hover:text-white font-semibold ">
-                  <a href="/Blue">
-                  Inventory
-                  </a>
-                 
-                </h3>
-              </div>
-             <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <SettingsIcon className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-slate-50 group-hover:text-white font-semibold ">
-                  Settings
-                </h3>
-              </div>
+            
+            
+           
               
             </div>
            

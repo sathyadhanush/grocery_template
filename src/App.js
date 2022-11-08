@@ -1,9 +1,10 @@
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
-import Admin from './Admin';
-import Product from './Product';
-import AddProduct from './AddProduct';
-import Layout from './components/Layout';
-import SideNavbar from './components/SideNavbar';
+import Admin from './admin/Admin';
+import Shop from './admin/Shop/Shop';
+import Product from './admin/Products/Product';
+
+
+
 function App() {
 
     return (
@@ -12,11 +13,11 @@ function App() {
       <BrowserRouter>
     
       <Routes>
-        <Route path="/" element={<Admin/>} />
-        <Route path="/Product" element={<Product/>} />
-        <Route path="/AddProduct" element={<AddProduct/>} />
-        <Route path="/Layout" element={<Layout/>} />
-        <Route path="/SideNavbar" element={<SideNavbar/>} />
+   
+        <Route path="/" element={<Admin/>}/>
+        <Route path="/shop" element={<Shop/>}/>
+        <Route path="/product" element={<Product/>}/>
+    
       </Routes>
       </BrowserRouter>
       </div>
