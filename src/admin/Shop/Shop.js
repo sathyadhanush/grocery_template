@@ -66,7 +66,7 @@ const [page, setPage] = React.useState(0);
         .then(
           (result) => {
             setIsLoaded(true);
-            console.log(result.data[0]);
+            console.log(result.data);
             setRows(result.data);
             
           },

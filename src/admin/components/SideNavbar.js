@@ -1,12 +1,21 @@
 import React from "react";
 import {ShopIcon,PropertiesIcon} from "evergreen-ui"
-
+import styles from "./sidenav.module.css"
+import {ArrowRightIcon} from 'evergreen-ui';
+import {ArrowLeftIcon} from 'evergreen-ui';
+import { useState } from "react";
 
 
 function SideNavbar() {
+  const [open, setopen] = useState(true)
+  const toggleOpen = () => {
+      setopen(!open)
+  }
   return (
-    <div display="flex"  >
-      
+    <div className={open?styles.sidenav:styles.sidenavClosed}   >
+        <button className={styles.menuBtn} onClick={toggleOpen}>
+            {open? <ArrowLeftIcon />: <ArrowRightIcon />}
+        </button>
         <div  className="p-6 w-1/2 h-screen bg-zinc-800 z-20 fixed top-0 -left-96 lg:left-0 lg:w-60  peer-focus:left-0 peer:transition ease-out delay-150 duration-200">
           <div className="flex flex-col justify-start item-center">
             <h1 className="text-base text-center cursor-pointer font-bold text-slate-50 border-b border-gray-100 pb-4 w-full">

@@ -1,38 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@mui/material/Paper';
-import { Box } from '@mui/material';
 import { Url} from '../../constants/Global';
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import TablePagination from "@material-ui/core/TablePagination";
+import {Table,TableBody,TableCell,TableHead,TableRow,TablePagination} from "@material-ui/core";
 import { TableFooter } from '@mui/material';
 import  Layout  from '../components/Layout';
-
-const useStyles = makeStyles((theme) => ({
- 
-  button: {
-    display: 'block',
-    marginTop: theme.spacing(2),
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 100,
-   
-    marginLeft:900,
-  },
-}));
+import { Pane } from 'evergreen-ui';
+import {Button} from 'evergreen-ui';
 
 function Product() {
   
-  
-  const classes = useStyles();
-
-  const[error,setError]=React.useState([]);
+const[error,setError]=React.useState([]);
 const [rows, setRows] = useState([]);
 const [rowsPerPage, setRowsPerPage] = React.useState(5);
 const [page, setPage] = React.useState(0);
@@ -50,11 +26,8 @@ const[isloaded,setIsLoaded]=React.useState([]);
   const emptyRows =
   rowsPerPage - Math.min(rowsPerPage, rows.length - rows*rowsPerPage);
     useEffect(()=>{
-      
-      
       fetch(Url+"/app/v1/product/listbycust?page=0&limit=100",{
-        method:'get',  
-              
+        method:'get',     
         headers:{
           'Accept':'application/json',
           'Content-Type':'application/json',
@@ -65,9 +38,7 @@ const[isloaded,setIsLoaded]=React.useState([]);
         .then(res => res.json())
         .then(
           (result) => {
-           
             console.log('test1');
-           
             setIsLoaded(true);
             console.log(result.data[0]);
             setRows(result.data);
@@ -89,25 +60,20 @@ const[isloaded,setIsLoaded]=React.useState([]);
     
       return (
        <Layout>
-        <Box component="main" > 
-        
+        <Button marginLeft={1250} position="absolute" appearance="primary" intent="success">
+       <a href='/addproduct'> Add Product</a>
+      </Button>
+        <Pane className='text-black'>Product</Pane>
       
-        <h1>Product</h1>
-    <TableContainer component={Paper}>
-       <div>
-     
-    </div>
-      
-        <div>
-         <Table className={classes.table} aria-label="simple table">
+        <Pane>
+         <Table>
            <TableHead>
              <TableRow>  
              <TableCell >Product Id</TableCell>
              <TableCell >Product Name</TableCell>   
              <TableCell >Category Code</TableCell>  
              <TableCell >MRP</TableCell>
-             <TableCell >File Upload</TableCell>
-           
+             <TableCell >Images</TableCell>
             
              </TableRow>
            </TableHead>
@@ -119,12 +85,11 @@ const[isloaded,setIsLoaded]=React.useState([]);
              <TableCell>{row.product_id}</TableCell>
              <TableCell>{row.product_name}</TableCell>
              <TableCell>{row.category_code}</TableCell>
-             <TableCell>{row.mrp}</TableCell>
+             <TableCell>{row.mrp}</TableCell> 
+             <TableCell><Button ><a href="/ImageViewer">Images</a></Button></TableCell> 
              
-             
-             
+           
         </TableRow>
-       
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>
               <TableCell colSpan={6} />
@@ -134,9 +99,9 @@ const[isloaded,setIsLoaded]=React.useState([]);
            ))}
          </Table>
          <Table>
-  <TableBody /> 
-  <TableFooter>
-    <TableRow>
+        <TableBody /> 
+         <TableFooter>
+          <TableRow>
       <TablePagination
         count={rows.length}
         rowsPerPage={rowsPerPage}
@@ -164,10 +129,7 @@ const[isloaded,setIsLoaded]=React.useState([]);
     </TableRow>
   </TableFooter>
 </Table>
-         </div>
-
-    </TableContainer>
-    </Box>
+         </Pane>
     </Layout>
       );
      }
