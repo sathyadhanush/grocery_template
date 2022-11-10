@@ -3,6 +3,8 @@ import {ShopIcon,PropertiesIcon} from "evergreen-ui"
 import styles from "./sidenav.module.css"
 import {ArrowRightIcon} from 'evergreen-ui';
 import {ArrowLeftIcon} from 'evergreen-ui';
+import {UserIcon} from 'evergreen-ui';
+import {PeopleIcon} from 'evergreen-ui';
 import { useState } from "react";
 
 
@@ -23,7 +25,14 @@ function SideNavbar() {
              Grocery
             </h1>
             <div className=" my-4 border-b border-gray-100 pb-4">
-           
+            <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+                <PeopleIcon className="text-2xl text-gray-600 group-hover:text-white " />
+                <h3 className="text-base text-slate-50 group-hover:text-white font-semibold ">
+                  <a href="/Employee">
+                  Employee
+                  </a>
+                </h3>
+              </div>
               <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
                 <PropertiesIcon className="text-2xl text-gray-600 group-hover:text-white " />
                 <h3 className="text-base text-slate-50 group-hover:text-white font-semibold ">
@@ -37,6 +46,15 @@ function SideNavbar() {
                 <h3 className="text-base text-slate-50 group-hover:text-white font-semibold ">
                   <a href="/Shop">
                   Shop
+                  </a>
+                </h3>
+              </div>
+           
+              <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+                <UserIcon className="text-2xl text-gray-600 group-hover:text-white " />
+                <h3 className="text-base text-slate-50 group-hover:text-white font-semibold ">
+                  <a href="/User">
+                  Users
                   </a>
                 </h3>
               </div>

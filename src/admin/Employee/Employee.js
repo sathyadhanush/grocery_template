@@ -6,15 +6,14 @@ import  Layout  from '../components/Layout';
 import { Pane } from 'evergreen-ui';
 import {Button} from 'evergreen-ui';
 
-function Shop() {
+function Employee() {
   
-  const[error,setError]=React.useState([]);
-  const[isloaded,setIsLoaded]=React.useState([]);
-  const [rows, setRows] = useState([]);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [page, setPage] = React.useState(0);
+
+    const [rows, setRows] = useState([]);
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [page, setPage] = React.useState(0);
   
-  
+    
     const handleChangePage = (event, newPage) => {
       setPage(newPage);
     };
@@ -25,54 +24,54 @@ function Shop() {
     };
   
     const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, rows.length - rows*rowsPerPage);
-      useEffect(()=>{
+      rowsPerPage - Math.min(rowsPerPage, rows.length - rows * rowsPerPage);
+    useEffect(() => {
+  
+  
+      fetch(Url + "/app/v1/cust/emp/listbycust?page=0&limit=100", {
+        method: 'get',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'auth-token': localStorage.getItem('x-auth-token'),
+          'x-app-key':localStorage.getItem('app-key')
+        }
+      })
+        .then(res => res.json())
+        .then(
+          (result) => {
         
-        fetch(Url+"/app/v1/cust/shop/listbycust?page=0&limit=100",{
-          method:'get',        
-          headers:{
-            'Accept':'application/json',
-            'Content-Type':'application/json',
-            'auth-token': localStorage.getItem('x-auth-token'),
-            'x-app-key':localStorage.getItem('app-key')
-          }
-        })
-          .then(res => res.json())
-          .then(
-            (result) => {
-              setIsLoaded(true);
-              console.log(result.data[0]);
-              setRows(result.data);
-              
-            },
+            console.log(result.data);
+            setRows(result.data);
+            if(result.success===true){
+              console.log("customer employee");
           
-            (error) => {
-              setIsLoaded(true);
-              setError(error);
-            }
-          )
-      }, [])
-    if (!error) {
-      return <div>Error:{error.result.data[0]}</div>;
-    } else if (!isloaded) {
-      return <div>Loading...</div>;
-    } else {
-    
+              }else{
+                alert(JSON.stringify(result.message));
+               }
+          },
+       
+        )
+    }, [])
+   
+  
       return (
        <Layout>
         <Button marginLeft={1250} position="absolute" appearance="primary" intent="success">
-       <a href='/addshop'> Add Shop</a>
+       <a href='/Addemployee'> Add Employee</a>
       </Button>
-        <Pane className='text-black'>Shop</Pane>
+        <Pane className='text-black'>Employee</Pane>
       
         <Pane>
          <Table>
            <TableHead>
              <TableRow>  
-             <TableCell >Shop ID</TableCell>
-             <TableCell >Shop Name</TableCell>   
-             <TableCell >Phone Number</TableCell>  
+             <TableCell >Employee id</TableCell>
+             <TableCell >First Name</TableCell>   
+             <TableCell >Last Name</TableCell>  
              <TableCell >Email</TableCell>
+             <TableCell >Phone Number</TableCell>
+            
              </TableRow>
            </TableHead>
            {rows
@@ -80,10 +79,13 @@ function Shop() {
            .map((row, index) => (
            <TableBody>
              <TableRow>
-             <TableCell>{row.shop_id}</TableCell>
-             <TableCell>{row.shop_name}</TableCell>
+             <TableCell>{row.emp_id}</TableCell>
+             <TableCell>{row.first_name}</TableCell>
+             <TableCell>{row.last_name}</TableCell>
+             <TableCell>{row.email_addr}</TableCell> 
              <TableCell>{row.phone_no}</TableCell>
-             <TableCell>{row.email_addr}</TableCell>  
+             
+           
         </TableRow>
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>
@@ -129,5 +131,5 @@ function Shop() {
       );
      }
   
-    }
-  export default Shop;
+    
+  export default Employee;

@@ -1,33 +1,10 @@
 import React, { useState,useEffect} from 'react'
-import { makeStyles } from '@material-ui/core/styles';
 import { Url} from '../../constants/Global';
 import axios from "axios";
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import FormControl from '@material-ui/core/FormControl';
 import  Layout  from '../components/Layout';
-import {Table,Button,TextInput, Pane} from "evergreen-ui";
-
-const useStyles = makeStyles((theme) => ({
-  button:{
-    alignItems:'center',
-     marginRight: theme.spacing(10)
-    },
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: '30ch',
-     
-    },
-  },
-  formControl:{
-    width: '30ch',
-  }
-}));
+import {Table,Button,TextInput, Pane,Select} from "evergreen-ui";
 
 function ProductPost(){
-  const classes = useStyles();
-
   const[product_name,setProduct_name]=useState("");
    const[description,setDescription]=useState("");
    const[category_id,setCategory_id]=useState([]);
@@ -53,7 +30,7 @@ function ProductPost(){
   const handleOpen1 = () => {
     setOpen1(true);
   };
-    function saveUser()
+    function saveProduct()
     {
 
       if (product_name === "") {
@@ -128,14 +105,13 @@ function ProductPost(){
     return(
        
         <Layout>
-
       <Pane className='text-black'>Add Product </Pane>
       <Table.Row >
       <Table.TextCell>
       Product Name
       </Table.TextCell>
       <Table.TextCell>
-          <TextInput label="Product Name" type="text" value={product_name} onChange={(e)=>{setProduct_name(e.target.value)}} name="Customer id"/>
+          <TextInput label="Product Name" type="text" value={product_name} onChange={(e)=>{setProduct_name(e.target.value)}} name="product_name"/>
           </Table.TextCell>
           <Table.TextCell>
           Description
@@ -150,9 +126,8 @@ function ProductPost(){
       </Table.TextCell>
       <Table.TextCell>
 
-          <FormControl className={classes.formControl}>
-        <InputLabel id="demo-controlled-open-select-label">Category</InputLabel>
         <Select
+          width="60%"
           labelId="demo-controlled-open-select-label"
           id="demo-controlled-open-select"
           open={open}
@@ -161,6 +136,7 @@ function ProductPost(){
           value={category_id} 
           onChange={(e)=>{setCategory_id(e.target.value)}}
         >
+          <option value="select">Select....</option>
           {category_code.map((categorys) =>(
                 <option key={categorys.category_code} value={categorys.category_id}>
                     {categorys.category_code}
@@ -168,7 +144,7 @@ function ProductPost(){
             ))}
           
         </Select>
-      </FormControl>
+
       </Table.TextCell>
       
     
@@ -176,9 +152,9 @@ function ProductPost(){
       UOM
       </Table.TextCell>
       <Table.TextCell>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="demo-controlled-open-select-label">UOM</InputLabel>
+  
         <Select
+           width="60%"
           labelId="demo-controlled-open-select-label"
           id="demo-controlled-open-select"
           open={open1}
@@ -187,6 +163,7 @@ function ProductPost(){
           value={uom_id} 
           onChange={(e)=>{setUom_id(e.target.value)}}
         >
+          <option value="select">Select....</option>
           {uom_code.map((uoms) =>(
                 <option key={uoms.uom_code} value={uoms.uom_id}>
                     {uoms.uom_code}
@@ -194,7 +171,7 @@ function ProductPost(){
             ))}
           
         </Select>
-      </FormControl>
+
       </Table.TextCell>
       </Table.Row>
       <Table.Row >
@@ -218,7 +195,7 @@ function ProductPost(){
       Expiry Date
       </Table.TextCell>
       <Table.TextCell>
-      <TextInput label="Expiry Date" type="text" value={expiry_date} onChange={(e)=>{setExpiry_date(e.target.value)}} name="customer_name"/>
+      <TextInput label="Expiry Date" type="text" value={expiry_date} onChange={(e)=>{setExpiry_date(e.target.value)}} name="expiry_date"/>
       </Table.TextCell>
       <Table.TextCell></Table.TextCell>
       <Table.TextCell></Table.TextCell>
@@ -229,7 +206,7 @@ function ProductPost(){
        
          
          
-         <Button marginLeft={700} position="absolute" appearance="primary" intent="success" onClick={saveUser}>
+         <Button marginLeft={700} position="absolute" appearance="primary" intent="success" onClick={saveProduct}>
        <a href='/product'> Add Product</a>
       </Button>
       </Layout>
