@@ -28,7 +28,7 @@ function Employee() {
     useEffect(() => {
   
   
-      fetch(Url + "/app/v1/cust/emp/listbycust?page=0&limit=100", {
+      fetch(Url + "/app/v1/cust/emp/listbycust?page=0&limit=10", {
         method: 'get',
         headers: {
           'Accept': 'application/json',
@@ -58,7 +58,7 @@ function Employee() {
       return (
        <Layout>
         <Button marginLeft={1250} position="absolute" appearance="primary" intent="success">
-       <a href='/Addemployee'> Add Employee</a>
+       <a href='/employee/addemployee'> Add Employee</a>
       </Button>
         <Pane className='text-black'>Employee</Pane>
       

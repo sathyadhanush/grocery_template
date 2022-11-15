@@ -58,10 +58,6 @@ function SideNavbar() {
                   </a>
                 </h3>
               </div>
-            
-            
-           
-              
             </div>
            
           </div>

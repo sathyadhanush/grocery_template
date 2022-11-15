@@ -4,7 +4,7 @@ import {Table,TableBody,TableCell,TableHead,TableRow,TablePagination} from "@mat
 import { TableFooter } from '@mui/material';
 import  Layout  from '../components/Layout';
 import { Pane } from 'evergreen-ui';
-import {Button} from 'evergreen-ui';
+
 
 function User() {
   
@@ -60,9 +60,7 @@ function User() {
     
       return (
        <Layout>
-        <Button marginLeft={1250} position="absolute" appearance="primary" intent="success">
-       <a href='/adduser'> Add User</a>
-      </Button>
+      
         <Pane className='text-black'>User</Pane>
       
         <Pane>

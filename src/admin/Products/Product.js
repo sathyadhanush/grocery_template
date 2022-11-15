@@ -61,7 +61,7 @@ const[isloaded,setIsLoaded]=React.useState([]);
       return (
        <Layout>
         <Button marginLeft={1250} position="absolute" appearance="primary" intent="success">
-       <a href='/addproduct'> Add Product</a>
+       <a href='/product/addproduct'> Add Product</a>
       </Button>
         <Pane className='text-black'>Product</Pane>
       

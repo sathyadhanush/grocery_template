@@ -1,30 +1,17 @@
 import React, { useState } from "react";
-import Avatar from '@mui/material/Avatar';
-import CssBaseline from '@mui/material/CssBaseline';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Url} from './../constants/Global';
 import { useNavigate } from 'react-router-dom';
-import Grid from '@mui/material/Grid';
 import './Login.css';
-import { Button,TextInput,Checkbox } from "@orkaapps/components";
-
-
-const theme = createTheme();
-
+import { Button,TextInput, Pane,Table } from "evergreen-ui";
 
 
   const SignIn = () => {
     const navigate = useNavigate();
-  
-  const[phone_no,setPhone_no]=useState("")
+    const[phone_no,setPhone_no]=useState("")
   
 
-  async function SaveUser()
+  async function login()
   {
     if (phone_no === "") {
       alert("Phone Number must be filled out");
@@ -73,79 +60,48 @@ const theme = createTheme();
       flexDirection: 'column',
       alignItems:'center' ,
            boxShadow:10,
-           marginRight: theme.spacing(2),
-           marginLeft: theme.spacing(2),
+          
     }}
   >
-    <ThemeProvider theme={theme}>
-       <Grid container component="main" sx={{ height: '100vh' }}>
-        <CssBaseline />
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={4}
-          sx={{
-          marginTop:53,
-         marginLeft:49,
-         fontSize:20,
-        
-        }}
-        >
-         
-             </Grid>
-      <Container component="main" maxWidth="xs" >
-        <CssBaseline />
-       
-         
-          <Box component="form" onSubmit={handleSubmit}  
+      <Pane>
+      <Box component="form" onSubmit={handleSubmit}  
           noValidate sx={{ 
              marginTop: 15,
-             marginLeft:1,
-             width:400,
-              display: 'flex',
+             marginLeft:39,
+             width:500,
               flexDirection: 'column',
               alignItems:'center' ,
-              boxShadow: 7,
+            
             }}>
-               <Avatar sx={{ m: 2, bgcolor: '#818688' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
+          <Pane fontSize="200%">
         Customer Login
-          </Typography>
-            <TextInput
+          </Pane>
+          <Table.Row>
+            <Table.TextCell>
+              Phone Number
+            </Table.TextCell>
+            <Table.TextCell>
+            <TextInput width={200}
            type="text" value={phone_no} onChange={(e)=>{setPhone_no(e.target.value)}}
             name="phone_no"
               margin="normal"
-              
-              
               id="phone number"
               label="Phone Number"
-             
-              autoComplete="phone number"
-              autoFocus
+              placeholder="Enter Number...."
             />
-            
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-            onClick={SaveUser} 
-           kind="primary">
+          </Table.TextCell>
+            </Table.Row>
+            <Table.Row>
+              <Table.TextCell marginLeft={180}>
+              <Button
+            onClick={login} 
+            appearance="primary" intent="success">
               SEND OTP
             </Button>
-           <br/>
-          
-            <br/>
+              </Table.TextCell>
+            </Table.Row>  
             </Box>
-       
-        
-      </Container>
-      
-      </Grid>
-    </ThemeProvider>
+      </Pane>
 </Box>
   );
 }

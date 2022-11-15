@@ -28,7 +28,7 @@ function Shop() {
     rowsPerPage - Math.min(rowsPerPage, rows.length - rows*rowsPerPage);
       useEffect(()=>{
         
-        fetch(Url+"/app/v1/cust/shop/listbycust?page=0&limit=100",{
+        fetch(Url+"/app/v1/cust/shop/listbycust?page=0&limit=10",{
           method:'get',        
           headers:{
             'Accept':'application/json',
@@ -61,7 +61,7 @@ function Shop() {
       return (
        <Layout>
         <Button marginLeft={1250} position="absolute" appearance="primary" intent="success">
-       <a href='/addshop'> Add Shop</a>
+       <a href='/shop/addshop'> Add Shop</a>
       </Button>
         <Pane className='text-black'>Shop</Pane>
       

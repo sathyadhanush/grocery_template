@@ -203,12 +203,16 @@ function ProductPost(){
          
 
           
-       
-         
-         
-         <Button marginLeft={700} position="absolute" appearance="primary" intent="success" onClick={saveProduct}>
+      <Table.Row>
+        <Table.TextCell>
+        <Button marginLeft={700} position="absolute" appearance="primary" intent="success" onClick={saveProduct}>
        <a href='/product'> Add Product</a>
       </Button>
+        </Table.TextCell>
+        </Table.Row>
+         
+         
+      
       </Layout>
      
     );

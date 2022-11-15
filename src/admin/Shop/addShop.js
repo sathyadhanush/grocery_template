@@ -185,7 +185,7 @@ function ShopPost(){
          <Table.Row>
          <Table.TextCell>      
          <Button marginLeft={700} position="absolute" appearance="primary" intent="success" onClick={saveShop}>
-       <a href='/product'> Add Shop</a>
+       <a href='/shop'> Add Shop</a>
       </Button>
       </Table.TextCell>
          </Table.Row>

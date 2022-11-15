@@ -1,20 +1,10 @@
 import React, { useState,useEffect } from "react";
-import Avatar from '@mui/material/Avatar';
-import CssBaseline from '@mui/material/CssBaseline';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Url} from './../constants/Global';
 import { useNavigate } from 'react-router-dom';
 import './Login.css'
-import Grid from '@mui/material/Grid';
-import { Button,TextInput,Checkbox } from "@orkaapps/components";
+import { Button,TextInput,Pane,Table } from "evergreen-ui";
 
-
-const theme = createTheme();
 
   const Signotp = () => {
     const navigate = useNavigate();
@@ -83,77 +73,60 @@ useEffect(() => {
       flexDirection: 'column',
       alignItems:'center' ,
            boxShadow:12,
-           marginRight: theme.spacing(2),
-           marginLeft: theme.spacing(2),
+       
     }}
   >
-    <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '100vh' }}>
-        <CssBaseline />
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={4}
-          sx={{
-          marginTop:18,
-         marginLeft:50,
-         fontSize:30,
-        
-        }}
-        >
-     </Grid>
-      <Container component="main" maxWidth="xs" >
-        <CssBaseline />
-       
-         
+      <Pane >
           <Box component="form" onSubmit={handleSubmit}  
           noValidate sx={{ 
-             marginTop: 15,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems:'center' ,
-              boxShadow: 7,
+            marginTop: 15,
+            marginLeft:39,
+            width:500,
+             flexDirection: 'column',
+             alignItems:'center' ,
               
             }}>
-               <Avatar sx={{ m: 2, bgcolor: '#818688' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
+     
+    
+   
+          <Pane fontSize="200%">
             OTP
-          </Typography>
-            <TextInput
+          </Pane>
+
+         <Table.Row>
+         <Table.TextCell>
+              OTP
+            </Table.TextCell>
+            <Table.TextCell>
+            <TextInput  width={200}
            type="text" value={otp} onChange={(e)=>{setOtp(e.target.value)}}
             name="otp"
               margin="normal"
-                           
               id="otp"
-              label="OTP"
-             
-              autoComplete="otp"
-              autoFocus
+              label="otp"
+              placeholder="Enter the OTP"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
+          </Table.TextCell>
+            </Table.Row>
+            <Table.Row>
+              <Table.TextCell>
+              <Button marginLeft={180}
             onClick={SaveUser} 
-             kind="primary"
-            >
+            appearance="primary" intent="success">
               Login
             </Button>
+              </Table.TextCell>
+            </Table.Row>  
             
-           <br/>
-           <br/>
+         
               
             </Box>
        
         
-      </Container>
+      </Pane>
       
-      </Grid>
-    </ThemeProvider>
+   
+   
   </Box>
   );
 }

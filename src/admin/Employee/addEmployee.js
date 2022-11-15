@@ -265,10 +265,14 @@ function EmployeePost(){
       </Table.TextCell>
       </Table.Row>
       
-         
-         <Button marginLeft={700} position="absolute" appearance="primary" intent="success" onClick={saveEmployee}>
+      <Table.Row>
+        <Table.TextCell>
+        <Button marginLeft={700} position="absolute" appearance="primary" intent="success" onClick={saveEmployee}>
        <a href='/employee'> Add Employee</a>
       </Button>
+        </Table.TextCell>
+       
+      </Table.Row>
       </Layout>
      
     );
