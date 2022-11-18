@@ -22,6 +22,7 @@ function Employee() {
       setRowsPerPage(parseInt(event.target.value, 10));
       setPage(0);
     };
+    
   
     const emptyRows =
       rowsPerPage - Math.min(rowsPerPage, rows.length - rows * rowsPerPage);
@@ -71,7 +72,8 @@ function Employee() {
              <TableCell >Last Name</TableCell>  
              <TableCell >Email</TableCell>
              <TableCell >Phone Number</TableCell>
-            
+             <TableCell >Edit</TableCell>
+             <TableCell >Delete</TableCell>
              </TableRow>
            </TableHead>
            {rows
@@ -84,8 +86,8 @@ function Employee() {
              <TableCell>{row.last_name}</TableCell>
              <TableCell>{row.email_addr}</TableCell> 
              <TableCell>{row.phone_no}</TableCell>
-             
-           
+             <TableCell><Button ><a href="/employee/addemployee?id=1">Edit</a></Button></TableCell>
+             <TableCell><Button ><a href="/">Delete</a></Button></TableCell>
         </TableRow>
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>

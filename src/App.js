@@ -13,6 +13,7 @@ import FileUpload  from './admin/Products/Fileupload';
 import ImageViewer from './admin/Products/ImageViewer';
 
 
+
 function App() {
 
     return (
@@ -33,6 +34,8 @@ function App() {
         <Route path="/user" element={<User/>}/>
         <Route path="/Fileupload" element={<FileUpload/>}/>
         <Route path="/ImageViewer" element={<ImageViewer/>}/>
+
+
       </Routes>
       </BrowserRouter>
       </div>

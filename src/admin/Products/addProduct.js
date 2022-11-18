@@ -3,6 +3,7 @@ import { Url} from '../../constants/Global';
 import axios from "axios";
 import  Layout  from '../components/Layout';
 import {Table,Button,TextInput, Pane,Select} from "evergreen-ui";
+import  Fileupload  from './Fileupload';
 
 function ProductPost(){
   const[product_name,setProduct_name]=useState("");
@@ -190,15 +191,19 @@ function ProductPost(){
 
       </Table.Row>
      
-      <Table.Row>
+      <Table.Row height="20%">
       <Table.TextCell>
       Expiry Date
       </Table.TextCell>
       <Table.TextCell>
       <TextInput label="Expiry Date" type="text" value={expiry_date} onChange={(e)=>{setExpiry_date(e.target.value)}} name="expiry_date"/>
       </Table.TextCell>
-      <Table.TextCell></Table.TextCell>
-      <Table.TextCell></Table.TextCell>
+      <Table.TextCell>
+      File Upload
+      </Table.TextCell>
+      <Table.TextCell>
+      <Fileupload/>
+      </Table.TextCell>
       </Table.Row>
          
 

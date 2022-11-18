@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Url} from '../../constants/Global';
-import { Button} from "@orkaapps/components";
+import { Button} from "evergreen-ui";
 
 function FileUploadPage(){
 	const [selectedFile, setSelectedFile] = useState();
@@ -16,7 +16,7 @@ function FileUploadPage(){
 		const formData = new FormData();
 
 		formData.append('file', selectedFile);
-        formData.append('product_id',21);
+        formData.append('product_id',30);
 		fetch(
             Url+'/app/v1/product/img',
 			{

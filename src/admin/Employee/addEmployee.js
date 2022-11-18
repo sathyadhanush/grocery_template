@@ -3,9 +3,10 @@ import { Url} from '../../constants/Global';
 import axios from "axios";
 import  Layout  from '../components/Layout';
 import {Table,Button,TextInput, Pane,Select} from "evergreen-ui";
+import queryString from 'query-string';
 
 function EmployeePost(){
-    
+  const queryStringParams = queryString.parse(window.location.search);
     const [first_name,setfirst]=useState("");
     const [last_name,setlast]=useState("");
     const [email_addr,setEmail_addr]=useState("");
@@ -21,7 +22,7 @@ function EmployeePost(){
     const [pin_code ,setPin_code] = useState([]);
     const [open,setOpen]=useState("");
     const [open1,setOpen1]=useState("");
-  
+  console.log("queryStringParams",queryStringParams.id);
    const [opens,setOpens]=useState("");
     const handleCloses = () => {
       setOpens(false);
@@ -115,12 +116,12 @@ function EmployeePost(){
           })
         })
       } 
-      useEffect(function(){
-        axios
-        .get(Url+"/app/v1/cust/role/list")
-        .then((response) => setRoles(response.data.data))
-        .then((error) => console.log(error));
-       },[]);
+      // useEffect(function(){
+      //   axios
+      //   .get(Url+"/app/v1/cust/role/list")
+      //   .then((response) => setRoles(response.data.data))
+      //   .then((error) => console.log(error));
+      //  },[]);
        useEffect(function(){
         axios
         .get(Url+"/app/v1/city/list")
@@ -133,7 +134,20 @@ function EmployeePost(){
         .then((response) => setState(response.data.data))
         .then((error) => console.log(error));
        },[]);
-
+       useEffect(function(){
+        axios
+        .get(Url+"/v1/cust/emp/view?emp_id="+queryStringParams.id)
+        .then((response) => {
+         
+          setfirst(response.data.data.first_name)
+          setlast(response.data.data.last_name)
+          setEmail_addr(response.data.data.email_addr)
+          setphone(response.data.data.phone_no)
+          setRoles(response.data.data.role_name)
+        })
+        .then((error) => console.log(error));
+       },
+       []); 
     return(
        
         <Layout>
@@ -193,7 +207,7 @@ function EmployeePost(){
       </Table.TextCell>
       <Table.TextCell>
       <Select
-          labelId="demo-controlled-open-select-label"
+          labelid="demo-controlled-open-select-label"
           id="demo-controlled-open-select"
           open={open1}
           onClose={handleClose1}
@@ -218,7 +232,7 @@ function EmployeePost(){
       <Table.TextCell>
 
       <Select
-          labelId="demo-controlled-open-select-label"
+          labelid="demo-controlled-open-select-label"
           id="demo-controlled-open-select"
           open={opens}
           onClose={handleCloses}
@@ -245,7 +259,7 @@ function EmployeePost(){
       <Table.TextCell>
   
       <Select
-          labelId="demo-controlled-open-select-label"
+          labelid="demo-controlled-open-select-label"
           id="demo-controlled-open-select"
           open={open}
           onClose={handleClose}
