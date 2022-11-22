@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Box from '@mui/material/Box';
-import { Url} from './../constants/Global';
-import { useNavigate } from 'react-router-dom';
+import { URL } from '../../config/constant/apiConstant';
+import { useHistory } from 'react-router-dom';
 import './Login.css';
 import { Button,TextInput, Pane,Table } from "evergreen-ui";
 
 
-  const SignIn = () => {
-    const navigate = useNavigate();
+const SignIn = () => {
+    const history = useHistory();
     const[phone_no,setPhone_no]=useState("")
   
 
@@ -19,7 +19,7 @@ import { Button,TextInput, Pane,Table } from "evergreen-ui";
     }
     let data={phone_no}
     console.warn(data)   
-   let result=await fetch(Url+"/app/v1/cust/signin",{
+   let result=await fetch(URL+"/app/v1/cust/signin",{
       method:'post',
       body:JSON.stringify(data),  
       headers:{
@@ -35,7 +35,7 @@ import { Button,TextInput, Pane,Table } from "evergreen-ui";
         localStorage.setItem('phone_no',phone_no);
        
         console.log("test2");
-        navigate('/loginotp')
+        history.push('/loginotp')
         }else{
           alert(JSON.stringify(result.message));
          }

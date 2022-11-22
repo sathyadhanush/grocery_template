@@ -1,17 +1,20 @@
 import React, { useState,useEffect } from "react";
 import Box from '@mui/material/Box';
-import { Url} from './../constants/Global';
-import { useNavigate } from 'react-router-dom';
+import { URL } from '../../config/constant/apiConstant';
+import { useHistory } from 'react-router-dom';
 import './Login.css'
 import { Button,TextInput,Pane,Table } from "evergreen-ui";
-
-
+import {storeLocal} from "../../helpers/projectHelper";
+import {USER_DATA} from "../../config/constant/projectConstant";
+import {ADMIN} from "../../config/constant/routePathConstant";
   const Signotp = () => {
-    const navigate = useNavigate();
+    const history = useHistory();
   
   const[phone_no,setPhone_no]=useState("");
   const [otp, setOtp] = useState([]);
-
+  useEffect(() => {
+    console.log('otp component');
+  },[])
 
   async function SaveUser()
   {
@@ -21,7 +24,7 @@ import { Button,TextInput,Pane,Table } from "evergreen-ui";
     }
     let data={phone_no}
     console.warn(data)   
-   let result=await fetch(Url+"/app/v1/cust/signin/otp",{
+   let result=await fetch(URL+"/app/v1/cust/signin/otp",{
       method:'post',
       body:JSON.stringify(data),  
       headers:{
@@ -39,10 +42,14 @@ import { Button,TextInput,Pane,Table } from "evergreen-ui";
       console.log(JSON.stringify(result.data));
       let obj = JSON.parse(myJSON);
       localStorage.setItem('x-auth-token', obj.token);
-   
+      localStorage.setItem('user_type',"admin")
       localStorage.setItem('app-key', obj.app_key);
-      console.log(JSON.stringify( obj.token))
-      navigate('/customer')
+      
+      let userObj= {
+        user_type : 'admin'
+      }
+      storeLocal(userObj,USER_DATA)
+      history.push(ADMIN)
       }else{
         alert(JSON.stringify(result.message));
       }
