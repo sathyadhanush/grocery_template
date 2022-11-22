@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Url } from "../../constants/Global";
+import { URL } from '../../config/constant/apiConstant';
 import {
   Table,
   TableBody,
@@ -9,7 +9,7 @@ import {
   TablePagination,
 } from "@material-ui/core";
 import { TableFooter } from "@mui/material";
-import Layout from "../components/Layout";
+// import Layout from "../../admin/components/Layout";
 import { Pane } from "evergreen-ui";
 import { Button, Avatar } from "evergreen-ui";
 
@@ -32,7 +32,7 @@ function Product() {
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, rows.length - rows * rowsPerPage);
   useEffect(() => {
-    fetch(Url + "/app/v1/product/listbycust?page=0&limit=100", {
+    fetch(URL + "/app/v1/product/listbycust?page=0&limit=100", {
       method: "get",
       headers: {
         Accept: "application/json",
@@ -61,7 +61,7 @@ function Product() {
     return <div>Loading...</div>;
   } else {
     return (
-      <Layout>
+      <>
         <Button
           marginLeft={1250}
           position="absolute"
@@ -141,7 +141,7 @@ function Product() {
             </TableFooter>
           </Table>
         </Pane>
-      </Layout>
+      </>
     );
   }
 }
