@@ -11,14 +11,19 @@ const AdminContainer = (a) => {
   
    return (
      
-    //  <OtherSessionsChecker  sessionFailPath={LOGIN} currentRoute={ADMIN}>
-       <>
-       <Sidebar />
+     <OtherSessionsChecker  sessionFailPath={LOGIN} currentRoute={ADMIN}>
+        <div className="app d-flex">
+        <Sidebar />
+        <div className="content">
         <LazyLoader>
            <RouterBuilder data={ADMIN_ROUTES}/>
         </LazyLoader>
-        </>
-    //   </OtherSessionsChecker>
+        </div>
+        </div>
+     
+       
+   
+       </OtherSessionsChecker>
    );
 };
 

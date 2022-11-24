@@ -4,7 +4,9 @@
   gap: 10px;
   padding: 1rem;
 }
-
+.app{
+ display: flex;
+}
 Table {
   border-collapse: collapse;
   width: 100%;

@@ -12,6 +12,8 @@ import { TableFooter } from "@mui/material";
 // import Layout from "../../admin/components/Layout";
 import { Pane } from "evergreen-ui";
 import { Button, Avatar } from "evergreen-ui";
+import {useDispatch} from "react-redux";
+import { getProductApi } from "../../api/productApi";
 
 function Product() {
   const [error, setError] = React.useState([]);
@@ -19,7 +21,7 @@ function Product() {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [page, setPage] = React.useState(0);
   const [isloaded, setIsLoaded] = React.useState([]);
-
+  const dispatch = useDispatch()
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -32,28 +34,29 @@ function Product() {
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, rows.length - rows * rowsPerPage);
   useEffect(() => {
-    fetch(URL + "/app/v1/product/listbycust?page=0&limit=100", {
-      method: "get",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "auth-token": localStorage.getItem("x-auth-token"),
-        "x-app-key": localStorage.getItem("app-key"),
-      },
-    })
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          console.log("test1");
-          setIsLoaded(true);
-          console.log(result.data[0]);
-          setRows(result.data);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
+    dispatch(getProductApi())
+    // fetch(URL + "/app/v1/product/listbycust?page=0&limit=100", {
+    //   method: "get",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //     "auth-token": localStorage.getItem("x-auth-token"),
+    //     "x-app-key": localStorage.getItem("app-key"),
+    //   },
+    // })
+    //   .then((res) => res.json())
+    //   .then(
+    //     (result) => {
+    //       console.log("test1");
+    //       setIsLoaded(true);
+    //       console.log(result.data[0]);
+    //       setRows(result.data);
+    //     },
+    //     (error) => {
+    //       setIsLoaded(true);
+    //       setError(error);
+    //     }
+    //   );
   }, []);
   if (!error) {
     return <div>Error:{error.result.data[0]}</div>;
@@ -62,14 +65,14 @@ function Product() {
   } else {
     return (
       <>
-        <Button
+        {/* <Button
           marginLeft={1250}
           position="absolute"
           appearance="primary"
           intent="success"
         >
           <a href="/product/addproduct"> Add Product</a>
-        </Button>
+        </Button> */}
         <Pane className="text-black">Product</Pane>
 
         <Pane>

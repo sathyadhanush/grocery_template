@@ -1,4 +1,5 @@
 import { DEFAULT_TOKEN,  USER_DATA } from '../config/constant/projectConstant.js';
+import { LOGIN } from '../config/constant/routePathConstant.js';
 export const getUserData = (userData = USER_DATA) => {
     const localData = window.localStorage.getItem(userData);
     let res = {};
@@ -9,13 +10,15 @@ export const getUserData = (userData = USER_DATA) => {
     }
     return res;
   };
-export const getLocal = (tokenName = DEFAULT_TOKEN) => {
-    const localData = window.localStorage.getItem(tokenName);
-    let res;
+export const getLocal = () => {
+    const token = window.localStorage.getItem('x-auth-token');
+    const appkey =  window.localStorage.getItem('app-key');
+    let res = {};
     try {
-      res = JSON.parse(localData);
+      res['token'] = JSON.parse(token);
+      res['appkey'] = JSON.parse(appkey);
     } catch (err) {
-      res = localData;
+      res = {};
     }
     return res;
   };
@@ -25,4 +28,14 @@ export const getLocal = (tokenName = DEFAULT_TOKEN) => {
       data = JSON.stringify(data);
     }
     window.localStorage.setItem(tokenName, data);
+  };
+  export const removeLocal = (tokenName = DEFAULT_TOKEN) => {
+    window.localStorage.removeItem(tokenName);
+  
+  };
+  export const sessionDestroy = () => {
+    removeLocal();
+    removeLocal(USER_DATA);
+
+   
   };
