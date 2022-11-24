@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { NETWORK_ERROR, USER_TYPE_LOGIN } from '../config/constant/projectConstant.js';
+import { sessionDestroy  , getLocal , getUserData} from './projectHelper.js';
 class ApiClass {
     _url = '';
     _data = {};
@@ -108,14 +109,14 @@ class ApiClass {
        if (!this._api_root) {
           throw new Error('root path missing');
        }
-       const token = getLocal();
+       const {token = '' , appkey = ''} = getLocal();
        let res = null;
        let err = null;
        await axios({
           method: this._method,
           url: this._url,
           data: this._data,
-          headers: { ...this._headers, Authorization: token },
+          headers: { ...this._headers, "auth-token" : token , "x-app-key" : appkey },
           onUploadProgress: this._progress,
        }).then((r) => {
             res = r;
@@ -151,7 +152,7 @@ class ApiClass {
                  const { user_type='' } = getUserData()
                   this._authFail?.call(this, data);
                   if (!this._authFail) {
-                     errorToast({ title: 'Authentication Failed', msg });
+                     // errorToast({ title: 'Authentication Failed', msg });
                      if (user_type) {
                         sessionDestroy(USER_TYPE_LOGIN?.[user_type]);
                      }
@@ -161,14 +162,14 @@ class ApiClass {
                case 403: //session ok but access prevent
                   this._accessDenied?.call(this, data);
                   if (!this._accessDenied) {
-                     warningToast({ title: 'Permission Denied', msg });
+                     // warningToast({ title: 'Permission Denied', msg });
                   }
                   errorExec = false;
                   break;
                case 404: //not found path
                   this._notFound?.call(this, data);
                   if (!this._notFound) {
-                     errorToast({ title: 'Not Found', msg });
+                     // errorToast({ title: 'Not Found', msg });
                   }
                   errorExec = false;
                   break;
@@ -176,7 +177,7 @@ class ApiClass {
              
                   this._serverError?.call(this, data);
                   if (!this._serverError) {
-                     errorToast({ title: 'Internal Server Error', msg });
+                     // errorToast({ title: 'Internal Server Error', msg });
                      this._error?.call(this, err?.response?.data ?? {});
                   }
                   errorExec = false;

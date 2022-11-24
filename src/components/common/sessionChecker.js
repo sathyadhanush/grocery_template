@@ -28,27 +28,39 @@ export const OtherSessionsChecker = ({ checkCondition = true,currentRoute,allowe
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(true);
     
- 
-    useEffect(async() => {
-       const token = getLocal();
-       const { user_type = '' } = getUserData() ?? {};
-       const path = ROLE_NAV?.[user_type] ?? '';
+    useEffect(() =>{
+      console.log(pathname)
+         const token = getLocal();
+         console.log(token)
+         if(!token){
+            history.push('/');
+         }
+         if (token) {
+                     // history.push('/admin');
+                     setSuccess(true);
+               }
+           setLoading(false);
+    },[pathname])
+   //  useEffect(async() => {
+   //     const token = getLocal();
+   //     const { user_type = '' } = getUserData() ?? {};
+   //     const path = ROLE_NAV?.[user_type] ?? '';
 
-       if (!onlyToken) {
-          if (token && path && path !== currentRoute) {
-            history.push(path);
-          }
-          setSuccess(true);
-       }
-       if (!token) {
-        history.push(sessionFailPath);
-          setSuccess(false);
-       }
+   //     if (!onlyToken) {
+   //        if (token && path && path !== currentRoute) {
+   //          history.push(path);
+   //        }
+   //        setSuccess(true);
+   //     }
+   //     if (!token) {
+   //      history.push('/');
+   //        setSuccess(false);
+   //     }
        
       
      
-       setLoading(false);
-    }, [pathname]);
+   //     setLoading(false);
+   //  }, [pathname]);
     
     return loading ? <FullScreenLoader/> : success && children;
  };

@@ -8,7 +8,7 @@ export const MAIN_ROUTES = [
    
     { component: Login,   path: LOGIN },
     { component: LoginOtp, path: LOGIN_OTP },
-    { component: AdminContainer,subRoutes:"*", path: ADMIN },
+    { component: AdminContainer,subRoutes:"*", exact: false, path: ADMIN },
    
   ];
   
