@@ -10,15 +10,13 @@ export const getUserData = (userData = USER_DATA) => {
     }
     return res;
   };
-export const getLocal = () => {
-    const token = window.localStorage.getItem('x-auth-token');
-    const appkey =  window.localStorage.getItem('app-key');
-    let res = {};
+  export const getLocal = (tokenName = DEFAULT_TOKEN) => {
+    const localData = window.localStorage.getItem(tokenName);
+    let res;
     try {
-      res['token'] = JSON.parse(token);
-      res['appkey'] = JSON.parse(appkey);
+      res = JSON.parse(localData);
     } catch (err) {
-      res = {};
+      res = localData;
     }
     return res;
   };
