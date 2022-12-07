@@ -7,25 +7,11 @@
 .app{
  display: flex;
 }
-Table {
-  border-collapse: collapse;
+
+
+
+.content{
   width: 100%;
-}
-
-th,
-td {
-  border: 2px solid rgb(178, 182, 182);
-  text-align: left;
-  padding: 8px;
-  font-size: 20px;
-}
-
-th {
-  background-color: #9d9e9a;
-}
-
-td {
-  background-color:#eef0e9;
 }
 
 form {

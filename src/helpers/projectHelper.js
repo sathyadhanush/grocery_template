@@ -20,6 +20,16 @@ export const getUserData = (userData = USER_DATA) => {
     }
     return res;
   };
+  export const getAppKey = (tokenName =  'app-key') => {
+    const localData = window.localStorage.getItem(tokenName);
+    let res;
+    try {
+      res = JSON.parse(localData);
+    } catch (err) {
+      res = localData;
+    }
+    return res;
+  };
 
   export const storeLocal = (data = '', tokenName = DEFAULT_TOKEN) => {
     if (typeof data === 'object') {

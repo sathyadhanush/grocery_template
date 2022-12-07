@@ -19,7 +19,7 @@ const SignIn = () => {
     }
     let data={phone_no}
     console.warn(data)   
-   let result=await fetch(URL+"/app/v1/cust/signin",{
+   let result=await fetch(URL+"/cust/signin",{
       method:'post',
       body:JSON.stringify(data),  
       headers:{

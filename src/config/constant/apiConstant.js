@@ -1,4 +1,4 @@
-export const URL = 'https://app.bigblue360.com';
+export const URL = 'https://app.bigblue360.com/api/v1';
 
 
 export const LOGIN_API = '/cust/signin'

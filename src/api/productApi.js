@@ -6,13 +6,13 @@ import {
 
 
 
-export const getProductApi = (formData) => (dispatch) => {
+export const getProductApi = ({limit,skip}) => (dispatch) => {
     api()
       .root(URL)
-      .post(GET_PRODUCT)
-      .data(formData)
+      .get(`${GET_PRODUCT}?page=0&limit=10`)
+      .data()
       .success((a) => {
-         console.log(a)
+            
       })
       .error((e) => {
        

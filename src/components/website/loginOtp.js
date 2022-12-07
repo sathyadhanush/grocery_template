@@ -24,7 +24,7 @@ import {ADMIN} from "../../config/constant/routePathConstant";
     }
     let data={phone_no}
     console.warn(data)   
-   let result=await fetch(URL+"/app/v1/cust/signin/otp",{
+   let result=await fetch(URL+"/cust/signin/otp",{
       method:'post',
       body:JSON.stringify(data),  
       headers:{

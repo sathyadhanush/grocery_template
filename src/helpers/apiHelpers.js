@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { NETWORK_ERROR, USER_TYPE_LOGIN } from '../config/constant/projectConstant.js';
-import { sessionDestroy  , getLocal , getUserData} from './projectHelper.js';
+import { sessionDestroy  , getLocal , getUserData ,getAppKey} from './projectHelper.js';
 class ApiClass {
     _url = '';
     _data = {};
@@ -109,7 +109,8 @@ class ApiClass {
        if (!this._api_root) {
           throw new Error('root path missing');
        }
-       const {token = '' , appkey = ''} = getLocal();
+       const token = getLocal();
+       const appkey = getAppKey();
        let res = null;
        let err = null;
        await axios({

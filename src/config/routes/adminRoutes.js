@@ -12,5 +12,5 @@ const ProductPage = lazy(() => import('../../components/admin/product'));
 export const ADMIN_ROUTES = [
     { component: RedirectToAdminDashboard, path: ADMIN },
     {component:ProductPage,path:ADMIN_DASHBOARD},
-   
+    
 ]
